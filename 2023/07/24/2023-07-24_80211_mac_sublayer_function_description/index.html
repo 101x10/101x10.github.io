@@ -5,7 +5,7 @@
   <meta name="generator" content="Hexo 6.3.0">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
   <meta charset="utf-8">
-  <meta name="robots" content="noindex,follow">
+  
 
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
@@ -20,20 +20,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>标签：Hexo - Wi-Fi学习者</title>
+  <title>IEEE 802.11 MAC层功能介绍 - Wi-Fi学习者</title>
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Wi-Fi学习者">
-<meta property="og:url" content="http://example.com/tags/Hexo/index.html">
+    <meta name="description" content="概述 MAC子层架构（协议10.2&#x2F;10.3&#x2F;10.23&#x2F;10.24），包括  DCF HCF MCF 以及它们共存形式   分片和去分片（协议10.4&#x2F;10.5）  多速率支持（协议10.6）  MSDU重排序或者丢弃处理的附加限制（协议10.7）  跨管制域操作（协议10.22）  块确认（BA）机制（协议10.25）  No Ack机制（协议10.26">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IEEE 802.11 MAC层功能介绍">
+<meta property="og:url" content="http://example.com/2023/07/24/2023-07-24_80211_mac_sublayer_function_description/index.html">
 <meta property="og:site_name" content="Wi-Fi学习者">
+<meta property="og:description" content="概述 MAC子层架构（协议10.2&#x2F;10.3&#x2F;10.23&#x2F;10.24），包括  DCF HCF MCF 以及它们共存形式   分片和去分片（协议10.4&#x2F;10.5）  多速率支持（协议10.6）  MSDU重排序或者丢弃处理的附加限制（协议10.7）  跨管制域操作（协议10.22）  块确认（BA）机制（协议10.25）  No Ack机制（协议10.26">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/ieee80211_mac_arch.png">
+<meta property="article:published_time" content="2023-07-23T23:27:48.000Z">
+<meta property="article:modified_time" content="2023-07-24T13:39:20.556Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="wlan">
+<meta property="article:tag" content="Wi-Fi">
+<meta property="article:tag" content="802.11">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/ieee80211_mac_arch.png">
   
   
   
-  
+  <meta name="keywords" content="wlan,Wi-Fi,802.11">
 
   <!-- feed -->
   
@@ -58,8 +67,10 @@
   
 
 
+
+
   <div class='l_body' id='start'>
-    <aside class='l_left' layout=''>
+    <aside class='l_left' layout='post'>
     
 
   
@@ -73,34 +84,118 @@
 <div class="widgets">
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/blog/" placeholder="文章搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/2023/07/24/2023-07-24_80211_mac_sublayer_function_description/"><span class="title">IEEE 802.11 MAC层功能介绍</span></a><a class="item title" href="/2023/07/23/2023-07-23_Wi-Fi_chip_arch_intro/"><span class="title">Wi-Fi芯片架构介绍</span></a><a class="item title" href="/2023/07/23/2023-07-23_wireless-router_arch_intro/"><span class="title">无线路由器框图介绍</span></a><a class="item title" href="/2023/07/23/hello-world/"><span class="title">Hello World</span></a></div></widget>
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">IEEE 802.11 MAC层功能介绍</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MAC-%E5%AD%90%E5%B1%82%E6%9E%B6%E6%9E%84"><span class="toc-text">MAC 子层架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DCF"><span class="toc-text">DCF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HCF"><span class="toc-text">HCF</span></a></li></ol></div></div></widget>
+
+
 
 
 </div>
 
 
     </aside>
-    <div class='l_main list'>
+    <div class='l_main'>
       
-  
-
-<header class="header mobile-only"><div class="logo-wrap"><a class="title" href="/"><div class="main" ff="title">Wi-Fi学习者</div></a></div></header>
-
-
 
       
 
-  
 
 
-  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Wi-Fi/">Wi-Fi</a></div><div id="post-meta">发布于&nbsp;<time datetime="2023-07-23T23:27:48.000Z">2023-07-24</time></div></div>
 
-<div class="nav-wrap"><nav class="sub post cap"><a href="/">近期发布</a><a href="/categories">分类</a><a class="active" href="/tags">标签：Hexo</a><a href="/archives">归档</a></nav></div>
-  <div class="post-list post"><a class="post-card post " href="/2023/07/23/hello-world/">
-<article class="md-text"><h2 class="post-title">Hello World</h2><div class="excerpt"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2023-07-22T23:21:43.782Z">2023-07-23</time></span><span class="cap breadcrumb">Hexo</span></div></article>
-</a></div>
-  
+<article class='md-text content post'>
+<h1 class="article-title"><span>IEEE 802.11 MAC层功能介绍</span></h1>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li><p>MAC子层架构（协议10.2&#x2F;10.3&#x2F;10.23&#x2F;10.24），包括</p>
+<ul>
+<li>DCF</li>
+<li>HCF</li>
+<li>MCF</li>
+<li>以及它们共存形式</li>
+</ul>
+</li>
+<li><p>分片和去分片（协议10.4&#x2F;10.5）</p>
+</li>
+<li><p>多速率支持（协议10.6）</p>
+</li>
+<li><p>MSDU重排序或者丢弃处理的附加限制（协议10.7）</p>
+</li>
+<li><p>跨管制域操作（协议10.22）</p>
+</li>
+<li><p>块确认（BA）机制（协议10.25）</p>
+</li>
+<li><p>No Ack机制（协议10.26）</p>
+</li>
+<li><p>保护机制（协议10.27）</p>
+</li>
+<li><p>MAC帧处理规则（协议10.28）</p>
+</li>
+</ul>
+<p>本节介绍 MAC 子层架构</p>
+<h2 id="MAC-子层架构"><a href="#MAC-子层架构" class="headerlink" title="MAC 子层架构"></a>MAC 子层架构</h2><p>MAC 层架构如下图所示</p>
+<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/images/ieee80211_mac_arch.png"/></div></div>
+
+<p>对于non-DMG，non-CMMG和non-SIG STA：</p>
+<ul>
+<li>MAC通过使用DCF服务来提供HCF和MCF服务，MAC同时也提供直接访问DCF服务</li>
+<li>HCF只存在QoS STA中</li>
+<li>MCF只存在mesh STA中</li>
+</ul>
+<div class="admonition note"><p class="admonition-title">note</p><ul>
+<li>
+<p>DMG: directional multi-gigabit的缩写，指工作的频率大于45GHz的操作，一般指80211ad协议定义的操作</p>
+</li>
+<li>
+<p>non-DMG: 非DMG</p>
+</li>
+<li>
+<p>CMMG: China millimeter-wave multi-gigabit的缩写，指工作的频率在42.3GHz~47.3GHz范围或者47.2GHz~48.4GHz的操作</p>
+</li>
+<li>
+<p>non-CMMG: 非CMMG</p>
+</li>
+<li>
+<p>S1G: Sub 1 GHz的缩写，指工作频率小于1GHz的操作</p>
+</li>
+<li>
+<p>non-S1G: 非S1G</p>
+</li>
+</ul>
+</div>
+
+<p><strong>名词解释</strong></p>
+<ul>
+<li><p>MAC变量（MAC variables）：MAC维护的信息，存储在本地变量中，该变量被称之为MAC变量。</p>
+</li>
+<li><p>状态变量（State variables）：保存状态信息的MAC变量，称之为状态变量。</p>
+</li>
+</ul>
+<h2 id="DCF"><a href="#DCF" class="headerlink" title="DCF"></a>DCF</h2><p>Distribute Coordinate Function的缩写， 分布式协调功能。</p>
+<p>MAC使用的基本接入方式是被称为载波监听&#x2F;冲突避免（CSMA&#x2F;CA）的DCF。</p>
+<blockquote>
+<p><strong>注意： 所有的STA都需要实现DCF功能</strong></p>
+</blockquote>
+<h2 id="HCF"><a href="#HCF" class="headerlink" title="HCF"></a>HCF</h2><p>Hybrid Coordination Function的缩写，混合协调功能。</p>
+<p>HCF仅在QoS网络中使用，</p>
+<blockquote>
+<p><strong>注意: 所有的QoS STA (除了mesh STA）都需要实现HCF功能</strong></p>
+</blockquote>
+<p>HCF通过结合DCF功能和一些增强的，特定于QoS机制，以允许使用统一的一套帧交换序列用于QoS STA数据传输。</p>
+<p>HCF使用基于竞争的信道接入方式（称为增加分布式信道接入（EDCA）机制）进行先竞争空口然后数据传输。同时使用受控的信道接入（也称为HCF受控信道接入（HCCA)机制）进行免竞争数据传输。</p>
+<p>STA可以通过EDCA或者HCCA方式获取到TXOP，</p>
+<p>若STA通过EDCA竞争方式获取到的TXOP，称之为<strong>EDCA TXOP</strong><br>若是通过HCCA方式获取到的TXOP，称之为<strong>HCCA TXOP</strong></p>
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2023/07/23/2023-07-23_Wi-Fi_chip_arch_intro/">Wi-Fi芯片架构介绍</a></div></section></div>
+
+
+
 
 
 
