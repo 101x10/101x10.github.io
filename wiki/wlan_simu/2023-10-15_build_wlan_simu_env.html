@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.3.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>wlan_simu：Ubuntu系统搭建wlan对通环境 - Wi-Fi学习者</title>
+
+  
+    <meta name="description" content="编译ko需要编译如下ko  libarc4.ko cfg80211.ko mac80211.ko mac80211_hwsim.ko  基于 Linux 内核源码编译ko的脚本如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ubuntu系统搭建wlan对通环境">
+<meta property="og:url" content="http://example.com/wiki/wlan_simu/2023-10-15_build_wlan_simu_env.html">
+<meta property="og:site_name" content="Wi-Fi学习者">
+<meta property="og:description" content="编译ko需要编译如下ko  libarc4.ko cfg80211.ko mac80211.ko mac80211_hwsim.ko  基于 Linux 内核源码编译ko的脚本如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-15T08:41:51.623Z">
+<meta property="article:modified_time" content="2023-10-15T08:41:51.623Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewBox="0 0 16 16" width="1rem" height="1rem" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/wlan_simu/index.html"><div class="main" ff="title">wlan_simu</div><div class="sub normal cap">wlan仿真项目</div><div class="sub hover cap" style="opacity:0"> Designed by 555</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/wlan_simu/" placeholder="在 /wiki/wlan_simu/ 中搜索"><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+<widget class="widget-wrapper ghrepo"><div class="widget-body"><div class="items stellar-ghinfo-api" api="https://api.github.com/repos/101x10/wlan_simu"><a class="repo" href="https://github.com/101x10/wlan_simu" target="_blank" rel="external nofollow noopener noreferrer"><div class="repo-name flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>101x10/wlan_simu</div><div class="repo-desc"><span type="text" id="description">&nbsp;</span></div><div class="grid"><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg><span type="text" id="stargazers_count"></span></div><div class="flex-row"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path></svg><span type="text" id="forks_count"></span></div><div class="flex-row stellar-ghinfo-api" index="0" api="https://api.github.com/repos/101x10/wlan_simu/tags"><svg aria-hidden="true" role="img" class="color-icon-primary" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor" style="user-select:none;overflow:visible"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"></path></svg><span type="text" id="latest-tag-name">0</span></div></div></a></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">快速开始</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/wlan_simu/index.html#start"><span class="toc-text">wlan simu使用说明</span></a></div></div><div class="widget-header cap dis-select"><span class="name">基本使用</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/wlan_simu/kernel_module.html"><span class="toc-text">wlan simu 内核模块</span></a></div></div><div class="widget-header cap dis-select"><span class="name">文档系统</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/wlan_simu/2023-10-15_build_wlan_simu_env.html"><span class="toc-text">Ubuntu系统搭建wlan对通环境</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91ko"><span class="toc-text">编译ko</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91app"><span class="toc-text">编译app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wlan%E5%AF%B9%E9%80%9A%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">wlan对通环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9AAP%E4%BE%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">步骤1：AP侧配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9ASTA%E4%BE%A7%E9%85%8D%E7%BD%AE"><span class="toc-text">步骤2：STA侧配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9AAP%E4%BE%A7%E5%90%AF%E5%8A%A8hostapd%E5%92%8Cdhcpd"><span class="toc-text">步骤3：AP侧启动hostapd和dhcpd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44%EF%BC%9ASTA%E4%BE%A7%E5%90%AF%E5%8A%A8wpa-supplicant"><span class="toc-text">步骤4：STA侧启动wpa_supplicant</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A45%EF%BC%9ASTA%E4%BE%A7%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80"><span class="toc-text">步骤5：STA侧获取IP地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A46%EF%BC%9Aping%E6%93%8D%E4%BD%9C"><span class="toc-text">步骤6：ping操作</span></a></li></ol></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/wlan_simu/2023-10-15_get_linux_source_code.html"><span class="toc-text">Ubuntu系统下载Linux内核源码</span></a></div></div></widget>
+
+<widget class="widget-wrapper timeline"><div class="widget-body fs14"><div class="tag-plugin timeline stellar-timeline-api" api="https://api.github.com/repos/101x10/wlan_simu/issues?per_page=3"></div></div></widget>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/wlan_simu/index.html">wlan_simu</a></div><div id="post-meta">更新于&nbsp;<time datetime="2023-10-15T08:41:51.623Z">2023-10-15</time></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>Ubuntu系统搭建wlan对通环境</span></h1>
+  <h2 id="编译ko"><a href="#编译ko" class="headerlink" title="编译ko"></a>编译ko</h2><p>需要编译如下ko</p>
+<ul>
+<li>libarc4.ko</li>
+<li>cfg80211.ko</li>
+<li>mac80211.ko</li>
+<li>mac80211_hwsim.ko</li>
+</ul>
+<p>基于 Linux 内核源码编译ko的脚本如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/bash</span></span><br><span class="line"></span><br><span class="line">CURRENT_DIR=`<span class="built_in">pwd</span>`</span><br><span class="line"></span><br><span class="line">KERNEL_SRC_NAME=linux-source-6.2.0</span><br><span class="line">KERNEL_SRC_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;KERNEL_SRC_NAME&#125;</span></span><br><span class="line">KO_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/ko</span><br><span class="line">CPU_CORE=8</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_libarc4_ko</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	CRYPTO_DIR=<span class="variable">$&#123;KERNEL_SRC_DIR&#125;</span>/lib/crypto</span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;CRYPTO_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` modules -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;CRYPTO_DIR&#125;</span>/libarc4.ko <span class="variable">$&#123;KO_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` clean -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_cfg80211_ko</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	CFG80211_DIR=<span class="variable">$&#123;KERNEL_SRC_DIR&#125;</span>/net/wireless</span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;CFG80211_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` modules -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;CFG80211_DIR&#125;</span>/cfg80211.ko <span class="variable">$&#123;KO_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` clean -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_mac80211_ko</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	MAC80211_DIR=<span class="variable">$&#123;KERNEL_SRC_DIR&#125;</span>/net/mac80211</span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;MAC80211_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` modules -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;MAC80211_DIR&#125;</span>/mac80211.ko <span class="variable">$&#123;KO_DIR&#125;</span></span><br><span class="line">	make -C /usr/src/linux-headers-`<span class="built_in">uname</span> -r` M=`<span class="built_in">pwd</span>` clean -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_mac80211_hwsim_ko</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	MAC80211_HWSIM_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/mac80211_hwsim</span><br><span class="line">	<span class="keyword">if</span> [ ! -d <span class="variable">$&#123;MAC80211_HWSIM_DIR&#125;</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		<span class="built_in">mkdir</span> <span class="variable">$&#123;MAC80211_HWSIM_DIR&#125;</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;MAC80211_HWSIM_DIR&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;KERNEL_SRC_DIR&#125;</span>/drivers/net/wireless/mac80211_hwsim.c .</span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;KERNEL_SRC_DIR&#125;</span>/drivers/net/wireless/mac80211_hwsim.h .</span><br><span class="line"></span><br><span class="line">	<span class="built_in">touch</span> Makefile</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">&quot;KERNEL_VERSION = \$(shell uname -r)&quot;</span> &gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;obj-m += mac80211_hwsim.o&quot;</span> &gt;&gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;build: kernel_modules&quot;</span> &gt;&gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;kernel_modules:&quot;</span> &gt;&gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> -e  <span class="string">&quot;\tmake -C /lib/modules/\$(KERNEL_VERSION)/build M=\$(CURDIR) modules&quot;</span> &gt;&gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">&quot;clean:&quot;</span> &gt;&gt; Makefile</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">&quot;\tmake -C /lib/modules/\$(KERNEL_VERSION)/build M=\$(CURDIR) clean&quot;</span> &gt;&gt; Makefile</span><br><span class="line"></span><br><span class="line">	make</span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;MAC80211_HWSIM_DIR&#125;</span>/mac80211_hwsim.ko <span class="variable">$&#123;KO_DIR&#125;</span></span><br><span class="line">	make clean</span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;KO_DIR&#125;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">mkdir</span> <span class="variable">$&#123;KO_DIR&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">compiling_libarc4_ko</span><br><span class="line">compiling_cfg80211_ko</span><br><span class="line">compiling_mac80211_ko</span><br><span class="line">compiling_mac80211_hwsim_ko</span><br></pre></td></tr></table></figure>
+
+<h2 id="编译app"><a href="#编译app" class="headerlink" title="编译app"></a>编译app</h2><p>需要编译如下app</p>
+<ul>
+<li>hostapd</li>
+<li>wpa_supplicant</li>
+<li>dhclient</li>
+<li>dhcpd</li>
+</ul>
+<p>基于各源码编译app的脚本如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/bash</span></span><br><span class="line"></span><br><span class="line">CURRENT_DIR=`<span class="built_in">pwd</span>`</span><br><span class="line"></span><br><span class="line">HOSTAPD_VERSION=hostapd-2.10</span><br><span class="line">HOSTAPD_SRC_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;HOSTAPD_VERSION&#125;</span>/</span><br><span class="line"></span><br><span class="line">WPA_SUPPLICANT_VERSION=wpa_supplicant-2.10</span><br><span class="line">WPA_SUPPLICANT_SRC_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;WPA_SUPPLICANT_VERSION&#125;</span>/</span><br><span class="line"></span><br><span class="line">DHCP_VERSION=dhcp-4.4.3</span><br><span class="line">DHCP_SRC_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;DHCP_VERSION&#125;</span>/</span><br><span class="line"></span><br><span class="line">APP_DIR=<span class="variable">$&#123;CURRENT_DIR&#125;</span>/app</span><br><span class="line"></span><br><span class="line">CPU_CORE=8</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_hostapd</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> [ ! -f <span class="variable">$&#123;HOSTAPD_VERSION&#125;</span>.tar.gz ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		wget https://w1.<span class="keyword">fi</span>/releases/hostapd-2.10.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> [ ! -d <span class="variable">$&#123;HOSTAPD_SRC_DIR&#125;</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		tar -zxvf <span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;HOSTAPD_VERSION&#125;</span>.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;HOSTAPD_SRC_DIR&#125;</span>/hostapd</span><br><span class="line">	<span class="built_in">cp</span> defconfig .config</span><br><span class="line">	make -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> hostapd <span class="variable">$&#123;APP_DIR&#125;</span></span><br><span class="line"><span class="comment">#	make clean</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_wpa_supplicant</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> [ ! -f <span class="variable">$&#123;WPA_SUPPLICANT_VERSION&#125;</span>.tar.gz ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		wget https://w1.<span class="keyword">fi</span>/releases/wpa_supplicant-2.10.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> [ ! -d <span class="variable">$&#123;WPA_SUPPLICANT_SRC_DIR&#125;</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		tar -zxvf <span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;WPA_SUPPLICANT_VERSION&#125;</span>.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;WPA_SUPPLICANT_SRC_DIR&#125;</span>/wpa_supplicant</span><br><span class="line">	<span class="built_in">cp</span> defconfig .config</span><br><span class="line">	make -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> wpa_supplicant <span class="variable">$&#123;APP_DIR&#125;</span></span><br><span class="line"><span class="comment">#	make clean</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">compiling_dhcp</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> [ ! -f <span class="variable">$&#123;DHCP_VERSION&#125;</span>.tar.gz ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		wget https://downloads.isc.org/isc/dhcp/4.4.3/dhcp-4.4.3.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> [ ! -d <span class="variable">$&#123;DHCP_SRC_DIR&#125;</span> ]</span><br><span class="line">	<span class="keyword">then</span></span><br><span class="line">		tar -zxvf <span class="variable">$&#123;CURRENT_DIR&#125;</span>/<span class="variable">$&#123;DHCP_VERSION&#125;</span>.tar.gz</span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cd</span> <span class="variable">$&#123;DHCP_SRC_DIR&#125;</span></span><br><span class="line">	./configure</span><br><span class="line">	make -j<span class="variable">$&#123;CPU_CORE&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;DHCP_SRC_DIR&#125;</span>/server/dhcpd <span class="variable">$&#123;APP_DIR&#125;</span></span><br><span class="line">	<span class="built_in">cp</span> <span class="variable">$&#123;DHCP_SRC_DIR&#125;</span>/client/dhclient <span class="variable">$&#123;APP_DIR&#125;</span></span><br><span class="line">	<span class="built_in">cd</span> -</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -d <span class="variable">$&#123;APP_DIR&#125;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">mkdir</span> <span class="variable">$&#123;APP_DIR&#125;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">compiling_hostapd</span><br><span class="line">compiling_wpa_supplicant</span><br><span class="line">compiling_dhcp</span><br></pre></td></tr></table></figure>
+
+<h2 id="wlan对通环境搭建"><a href="#wlan对通环境搭建" class="headerlink" title="wlan对通环境搭建"></a>wlan对通环境搭建</h2><p>Ubuntu 系统环境下，打开两个 Terminal 终端，其中一个 Terminal 终端用于 AP 侧， 另一个 Terminal 终端用于 STA 侧</p>
+<h3 id="步骤1：AP侧配置"><a href="#步骤1：AP侧配置" class="headerlink" title="步骤1：AP侧配置"></a>步骤1：AP侧配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">w512@w512-pc:~/wlan_test$ su root</span><br><span class="line">root@w512-pc:/home/w512/wlan_test<span class="comment"># ip netns add wifi_ap</span></span><br><span class="line">root@w512-pc:/home/w512/wlan_test<span class="comment"># ip netns list</span></span><br><span class="line">wifi_ap</span><br><span class="line">root@w512-pc:/home/w512/wlan_test<span class="comment"># ip netns exec wifi_ap bash</span></span><br><span class="line">root@w512-pc:/home/w512/wlan_test<span class="comment"># echo $BASHPID</span></span><br><span class="line">2280</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：2280在STA侧要用到</strong></p>
+<h3 id="步骤2：STA侧配置"><a href="#步骤2：STA侧配置" class="headerlink" title="步骤2：STA侧配置"></a>步骤2：STA侧配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line"></span><br><span class="line">iw phy phy0 <span class="built_in">set</span> netns 2280</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤3：AP侧启动hostapd和dhcpd"><a href="#步骤3：AP侧启动hostapd和dhcpd" class="headerlink" title="步骤3：AP侧启动hostapd和dhcpd"></a>步骤3：AP侧启动hostapd和dhcpd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ip addr add 192.168.100.2/24 dev wlan0</span><br><span class="line"></span><br><span class="line">hostapd-2.10/hostapd/hostapd hostapd.conf &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /var/db</span><br><span class="line"><span class="built_in">touch</span> /var/db/dhcpd.leases</span><br><span class="line"></span><br><span class="line">dhcp-4.4.3/server/dhcpd -4 -f -d -cf dhcpd.conf -lf /var/db/dhcpd.leases wlan0&amp;</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤4：STA侧启动wpa-supplicant"><a href="#步骤4：STA侧启动wpa-supplicant" class="headerlink" title="步骤4：STA侧启动wpa_supplicant"></a>步骤4：STA侧启动wpa_supplicant</h3><p>完成STA的扫描和关联</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpa_supplicant-2.10/wpa_supplicant/wpa_supplicant -B -i wlan1 -c wpa_supplicant.conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤5：STA侧获取IP地址"><a href="#步骤5：STA侧获取IP地址" class="headerlink" title="步骤5：STA侧获取IP地址"></a>步骤5：STA侧获取IP地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dhcp-4.4.3/client/dhclient -i wlan1</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤6：ping操作"><a href="#步骤6：ping操作" class="headerlink" title="步骤6：ping操作"></a>步骤6：ping操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@w512-pc:/home/w512/wifi_test<span class="comment"># ping 192.168.100.2</span></span><br><span class="line">PING 192.168.100.2 (192.168.100.2) 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.100.2: icmp_seq=1 ttl=64 time=0.053 ms</span><br><span class="line">64 bytes from 192.168.100.2: icmp_seq=2 ttl=64 time=0.072 ms</span><br><span class="line">64 bytes from 192.168.100.2: icmp_seq=3 ttl=64 time=0.091 ms</span><br><span class="line">64 bytes from 192.168.100.2: icmp_seq=4 ttl=64 time=0.055 ms</span><br><span class="line">64 bytes from 192.168.100.2: icmp_seq=5 ttl=64 time=0.076 ms</span><br></pre></td></tr></table></figure>
+
+
+<p>AP侧使用wlan0， STA侧使用wlan1， 信息如下</p>
+<p>AP侧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@w512-pc:/home/w512/wifi_test<span class="comment"># ip a</span></span><br><span class="line">1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">3: wlan0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 02:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.100.2/24 scope global wlan0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::ff:fe00:0/64 scope <span class="built_in">link</span></span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+
+<p>STA侧：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">root@w512-pc:/home/w512/wifi_test<span class="comment"># ip a</span></span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 08:00:27:13:5e:95 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.3.78/24 brd 192.168.3.255 scope global dynamic noprefixroute enp0s3</span><br><span class="line">       valid_lft 83452sec preferred_lft 83452sec</span><br><span class="line">    inet6 fe80::a884:46d8:b4de:1da0/64 scope <span class="built_in">link</span> noprefixroute</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">4: wlan1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ether 02:00:00:00:01:00 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 192.168.100.80/24 brd 192.168.100.255 scope global dynamic wlan1</span><br><span class="line">       valid_lft 518sec preferred_lft 518sec</span><br><span class="line">5: hwsim0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000</span><br><span class="line">    <span class="built_in">link</span>/ieee802.11/radiotap 12:00:00:00:00:00 brd ff:ff:ff:ff:ff:ff</span><br></pre></td></tr></table></figure>
+  
+  
+
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/wlan_simu/kernel_module.html">wlan simu 内核模块</a></div><div class="item" id="next"></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本站由 <a href="/">@wxer</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">Stellar</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.19.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.19.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css","js":"https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
